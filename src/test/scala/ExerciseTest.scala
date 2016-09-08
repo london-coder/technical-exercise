@@ -9,6 +9,8 @@ import scala.collection.mutable.ListBuffer
 class ExerciseTest extends FlatSpec with Matchers {
   // holds price of items
   val priceList = Map("Apple" -> 60, "Orange" -> 25)
+  // shopping cart content
+  val shoppingCart = List("Apple", "Apple", "Orange", "Apple")
   
   "The price list" should "include an apple" in {
     
@@ -31,12 +33,24 @@ class ExerciseTest extends FlatSpec with Matchers {
   }
   
   "A shopping cart" should "contains items" in {
-    val cart = List("Apple", "Apple", "Orange", "Apple")
     
-     assert(cart.size == 4)
+     assert(shoppingCart.size == 4)
+  }
+  
+  "The content of shopping cart" should "add up to" in {
+    assert(sumOfItems(shoppingCart) == 205)
+  }
+  
+  "The total price as a string" should "include currency symbol" in {
+    assert(formatPrice(sumOfItems(shoppingCart)) == "£2.05")
   }
   
   def sumOfItems(cart: List[String]): Int = {
-    0
+    cart map(priceList) sum
+  }
+  
+  def formatPrice(price: Int): String = {
+    val amount: Double = price.toDouble / 100 
+    f"£$amount%.2f"
   }
 }
