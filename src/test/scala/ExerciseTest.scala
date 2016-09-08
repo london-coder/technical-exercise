@@ -7,50 +7,72 @@ import scala.collection.mutable.ListBuffer
 
 
 class ExerciseTest extends FlatSpec with Matchers {
-  // holds price of items
-  val priceList = Map("Apple" -> 60, "Orange" -> 25)
-  // shopping cart content
-  val shoppingCart = List("Apple", "Apple", "Orange", "Apple")
+  // shopping cart test content
+  val basket = new ShoppingCart()
+
+  basket.basket ++= List("Apple", "Apple", "Orange", "Apple")
+
   
   "The price list" should "include an apple" in {
     
-    assert(priceList contains("Apple"))
+    assert(basket.priceList contains("Apple"))
   }
   
   "An apple" should "have a price" in {
 
-    assert(priceList("Apple") == 60)
+    assert(basket.priceList("Apple") == 60)
   }
   
   "The price list" should "include an orange" in {
 
-    assert(priceList contains("Orange"))
+    assert(basket.priceList contains("Orange"))
   }
   
   "An orange" should "have a price" in {
 
-    assert(priceList("Orange") == 25)
+    assert(basket.priceList("Orange") == 25)
   }
   
   "A shopping cart" should "contains items" in {
     
-     assert(shoppingCart.size == 4)
+     assert(basket.basket.size == 4)
   }
   
   "The content of shopping cart" should "add up to" in {
-    assert(sumOfItems(shoppingCart) == 205)
+    assert(basket.priceOfItems == 205)
   }
   
   "The total price as a string" should "include currency symbol" in {
-    assert(formatPrice(sumOfItems(shoppingCart)) == "£2.05")
+    assert(basket.formatPrice(basket.priceOfItems) == "£2.05")
   }
   
-  def sumOfItems(cart: List[String]): Int = {
-    cart map(priceList) sum
+  // step 2, where promotional offers are applied
+  // BOGOF for apples
+  "The discount on apples" should "mean only 2 are charged" in {
+    assert(basket.applyDiscount == 145)
   }
   
-  def formatPrice(price: Int): String = {
-    val amount: Double = price.toDouble / 100 
-    f"£$amount%.2f"
+  "Correct discount" should 
+    "be applied in all scenarios" in {
+      basket.clearBasket()
+      basket.basket ++= List("Orange", "Orange", "Orange")
+      assert(basket.applyDiscount == 50)
+  } 
+  it should "cost 3 when 4 oranges are purchased" in {
+    basket.basket ++= List("Orange")
+    assert(basket.applyDiscount == 75)
+    basket.basket ++= List("Orange", "Orange")
+    assert(basket.applyDiscount == 100)
   }
+  it should "cost 2 when 4 apples are purchased" in {
+    basket.clearBasket()
+    basket.basket ++= List("Apple", "Apple", "Apple", "Apple")
+    assert(basket.applyDiscount == 120)
+  }
+  it should "not apply discount when purchase does not reach threshold" in {
+    basket.clearBasket()
+    basket.basket ++= List("Apple", "Orange", "Orange")
+    assert(basket.applyDiscount == 110)
+  }
+    
 }
