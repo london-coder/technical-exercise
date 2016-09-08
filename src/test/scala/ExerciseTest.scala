@@ -1,10 +1,8 @@
 /* ===================================
  * test suite for programmer test 
  * =================================== */
-
 import org.scalatest.FlatSpec
 import org.scalatest.Matchers
-
 
 class ExerciseTest extends FlatSpec with Matchers {
   // shopping cart test content
@@ -14,27 +12,22 @@ class ExerciseTest extends FlatSpec with Matchers {
 
   
   "The price list" should "include an apple" in {
-    
     basket.contains("Apple") shouldBe true
   }
   
   "An apple" should "have a price" in {
-
     basket.itemPrice("Apple") should equal (60)
   }
   
   "The price list" should "include an orange" in {
-
     basket.contains("Orange") shouldBe true
   }
   
   "An orange" should "have a price" in {
-
     basket.itemPrice("Orange") == 25 shouldBe true
   }
   
   "The shopping cart" should "contain items" in {
-    
      basket.basketSize == 4 shouldBe true
   }
   
@@ -83,5 +76,4 @@ class ExerciseTest extends FlatSpec with Matchers {
     basket.addItems(List("Apple", "Orange", "Orange"))
     assert(basket.applyDiscount == 110)
   }
-    
 }
