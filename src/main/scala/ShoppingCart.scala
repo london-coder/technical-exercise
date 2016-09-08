@@ -1,9 +1,11 @@
 // shopping cart 
+// the container (basket) was chosen to be mutable for expediency 
 import scala.collection.mutable._
 
 class ShoppingCart extends ProduceOffers {
   // holds price of items
   private val priceList = Map("Apple" -> 60, "Orange" -> 25)
+  // the shopping cart container
   private val basket: ListBuffer[String] = ListBuffer()
 
   def contains(item: String): Boolean = {
