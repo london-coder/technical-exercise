@@ -3,9 +3,21 @@ import scala.collection.mutable._
 
 class ShoppingCart extends ProduceOffers {
   // holds price of items
-  val priceList = Map("Apple" -> 60, "Orange" -> 25)
-  val basket: ListBuffer[String] = ListBuffer()
+  private val priceList = Map("Apple" -> 60, "Orange" -> 25)
+  private val basket: ListBuffer[String] = ListBuffer()
 
+  def contains(item: String): Boolean = {
+    priceList contains(item)
+  }
+  
+  def basketSize: Int = {
+    basket.size
+  }
+  
+  def itemPrice(item: String): Int = {
+    if(priceList.contains(item)) priceList(item) else 0
+  }
+  
   def priceOfItems: Int = {
     basket map(priceList) sum
   }
@@ -31,5 +43,13 @@ class ShoppingCart extends ProduceOffers {
   
   def clearBasket(): Unit = {
     basket.clear()
+  }
+  
+  def additem(item: String): Unit = {
+    basket append item
+  }
+  
+  def addItems(items: List[String]): Unit = {
+    basket ++= items
   }
 }
