@@ -1,9 +1,9 @@
 /* ===================================
  * test suite for programmer test 
- =================================== */
+ * =================================== */
+
 import org.scalatest.FlatSpec
 import org.scalatest.Matchers
-import scala.collection.mutable.ListBuffer
 
 
 class ExerciseTest extends FlatSpec with Matchers {
@@ -33,12 +33,12 @@ class ExerciseTest extends FlatSpec with Matchers {
     basket.itemPrice("Orange") == 25 shouldBe true
   }
   
-  "A shopping cart" should "contains items" in {
+  "The shopping cart" should "contain items" in {
     
      basket.basketSize == 4 shouldBe true
   }
   
-  "The content of shopping cart" should "add up to" in {
+  "The content of shopping cart" should "add up all items" in {
     basket.priceOfItems should equal (205)
   }
   
@@ -59,7 +59,7 @@ class ExerciseTest extends FlatSpec with Matchers {
       basket.applyDiscount should equal(50)
   } 
   
-  it should "cost 3 when 4 oranges are purchased" in {
+  it should "cost 3 oranges when 4 oranges are purchased" in {
     basket.additem("Orange")
     basket.applyDiscount should equal (75)
   }
@@ -69,7 +69,7 @@ class ExerciseTest extends FlatSpec with Matchers {
     basket.applyDiscount should equal (100)
   }
   
-  it should "cost 2 when 4 apples are purchased" in {
+  it should "cost 2 apples when 4 apples are purchased" in {
     basket.clearBasket()
     basket.addItems(List("Apple", "Apple", "Apple", "Apple"))
     assert(basket.applyDiscount == 120)
