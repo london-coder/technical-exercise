@@ -30,13 +30,17 @@ class ShoppingCart extends ProduceOffers {
   }
   
   def discount: Int = {
+    applePromotion + orangePromotion
+  }
+  
+  def applePromotion: Int = {
     val appleCount = appleDiscount(basket)
-    val appleDeduction: Int = if (appleCount != 0) appleCount * priceList("Apple") else 0
-    
+    if (appleCount != 0) appleCount * priceList("Apple") else 0
+  }
+  
+  def orangePromotion: Int = {
     val orangeCount = orangeDiscount(basket)
-    val orangeDeduction = if(orangeCount != 0) orangeCount * priceList("Orange") else 0
-    
-    appleDeduction + orangeDeduction
+    if(orangeCount != 0) orangeCount * priceList("Orange") else 0
   }
   
   def applyDiscount(): Int = {

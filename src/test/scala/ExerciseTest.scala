@@ -1,10 +1,8 @@
 /* ===================================
  * test suite for programmer test 
- =================================== */
+ * =================================== */
 import org.scalatest.FlatSpec
 import org.scalatest.Matchers
-import scala.collection.mutable.ListBuffer
-
 
 class ExerciseTest extends FlatSpec with Matchers {
   // shopping cart test content
@@ -14,31 +12,26 @@ class ExerciseTest extends FlatSpec with Matchers {
 
   
   "The price list" should "include an apple" in {
-    
     basket.contains("Apple") shouldBe true
   }
   
   "An apple" should "have a price" in {
-
     basket.itemPrice("Apple") should equal (60)
   }
   
   "The price list" should "include an orange" in {
-
     basket.contains("Orange") shouldBe true
   }
   
   "An orange" should "have a price" in {
-
     basket.itemPrice("Orange") == 25 shouldBe true
   }
   
-  "A shopping cart" should "contains items" in {
-    
+  "The shopping cart" should "contain items" in {
      basket.basketSize == 4 shouldBe true
   }
   
-  "The content of shopping cart" should "add up to" in {
+  "The content of shopping cart" should "add up all items" in {
     basket.priceOfItems should equal (205)
   }
   
@@ -58,21 +51,29 @@ class ExerciseTest extends FlatSpec with Matchers {
       basket.addItems(List("Orange", "Orange", "Orange"))
       basket.applyDiscount should equal(50)
   } 
-  it should "cost 3 when 4 oranges are purchased" in {
+  
+  it should "cost 3 oranges when 4 oranges are purchased" in {
     basket.additem("Orange")
     basket.applyDiscount should equal (75)
-    basket.addItems(List("Orange", "Orange"))
-    basket.applyDiscount should equal (100)
   }
-  it should "cost 2 when 4 apples are purchased" in {
+  
+  it should "cost 4 oranges when there are 5 or 6 in the basket" in {
+    basket.additem("Orange")
+    basket.applyDiscount should equal (100)
+    basket.additem("Orange")
+    basket.basketSize should equal(6)
+    basket.applyDiscount() should equal (100)
+  }
+  
+  it should "cost 2 apples when 4 apples are purchased" in {
     basket.clearBasket()
     basket.addItems(List("Apple", "Apple", "Apple", "Apple"))
     assert(basket.applyDiscount == 120)
   }
+  
   it should "not apply discount when purchase does not reach threshold" in {
     basket.clearBasket()
     basket.addItems(List("Apple", "Orange", "Orange"))
     assert(basket.applyDiscount == 110)
   }
-    
 }
