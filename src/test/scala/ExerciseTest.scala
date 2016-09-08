@@ -64,9 +64,12 @@ class ExerciseTest extends FlatSpec with Matchers {
     basket.applyDiscount should equal (75)
   }
   
-  it should "cost 4 oranges when there are 6 in the basket" in {
-    basket.addItems(List("Orange", "Orange"))
+  it should "cost 4 oranges when there are 5 or 6 in the basket" in {
+    basket.additem("Orange")
     basket.applyDiscount should equal (100)
+    basket.additem("Orange")
+    basket.basketSize should equal(6)
+    basket.applyDiscount() should equal (100)
   }
   
   it should "cost 2 apples when 4 apples are purchased" in {
