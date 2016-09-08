@@ -58,17 +58,23 @@ class ExerciseTest extends FlatSpec with Matchers {
       basket.addItems(List("Orange", "Orange", "Orange"))
       basket.applyDiscount should equal(50)
   } 
+  
   it should "cost 3 when 4 oranges are purchased" in {
     basket.additem("Orange")
     basket.applyDiscount should equal (75)
+  }
+  
+  it should "cost 4 oranges when there are 6 in the basket" in {
     basket.addItems(List("Orange", "Orange"))
     basket.applyDiscount should equal (100)
   }
+  
   it should "cost 2 when 4 apples are purchased" in {
     basket.clearBasket()
     basket.addItems(List("Apple", "Apple", "Apple", "Apple"))
     assert(basket.applyDiscount == 120)
   }
+  
   it should "not apply discount when purchase does not reach threshold" in {
     basket.clearBasket()
     basket.addItems(List("Apple", "Orange", "Orange"))
