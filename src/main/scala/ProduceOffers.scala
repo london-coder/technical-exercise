@@ -14,5 +14,4 @@ trait ProduceOffers {
     val count = basket.count(_ == "Orange")
     if(count >= 3) count / 3 else 0
   }
-  
 }

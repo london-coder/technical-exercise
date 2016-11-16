@@ -1,7 +1,7 @@
 import org.scalatest.FlatSpec
 import org.scalatest.Matchers
 
-class AccountExercise extends FlatSpec with Matchers {
+class InterestExercise extends FlatSpec with Matchers {
   
   "A 0 amount" should "have a interest of 0" in {
       interest(0.0d) should equal(0.0d)
@@ -29,9 +29,9 @@ class AccountExercise extends FlatSpec with Matchers {
   
   def interest(am: Double): Double = {
     if(am > 0.0d) {
-      val lowest = 1000.00d
-      val middle = 5000.00d
-      if(am  <= lowest) interestValue(1, am) else if(am <= middle) interestValue(2, am) else interestValue(3, am)
+      val LOWER_THRESHOLD = 1000.00d
+      val MIDDLE_THRESHOLD = 5000.00d
+      if(am  <= LOWER_THRESHOLD) interestValue(1, am) else if(am <= MIDDLE_THRESHOLD) interestValue(2, am) else interestValue(3, am)
     }
     else 0d
   }
