@@ -4,9 +4,9 @@
 import org.scalatest.FlatSpec
 import org.scalatest.Matchers
 
-class ExerciseTest extends FlatSpec with Matchers {
+class ShoppingCartTest extends FlatSpec with Matchers {
   // shopping cart test content
-  val basket = new ShoppingCart()
+  val basket = new Checkout()
 
   basket.addItems( List("Apple", "Apple", "Orange", "Apple"))
 

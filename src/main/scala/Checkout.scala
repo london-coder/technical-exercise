@@ -2,7 +2,7 @@
 // the container (basket) was chosen to be mutable for expediency 
 import scala.collection.mutable._
 
-class ShoppingCart extends ProduceOffers {
+class Checkout extends ProduceOffers {
   // holds price of items
   private val priceList = Map("Apple" -> 60, "Orange" -> 25)
   // the shopping cart container
