@@ -7,7 +7,8 @@ import org.scalatest.Matchers
 class ShoppingCartTest extends FlatSpec with Matchers {
   // shopping cart test content
   val basket = new Checkout()
-
+  
+  // this is a representation of the purchased produce, or shopping.
   basket.addItems( List("Apple", "Apple", "Orange", "Apple"))
 
   
