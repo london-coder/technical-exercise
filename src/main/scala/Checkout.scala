@@ -25,8 +25,8 @@ class Checkout extends ProduceOffers {
   }
   
   def formatPrice(price: Int): String = {
-    val amount: Double = price.toDouble / 100 
-    f"£$amount%.2f"
+    val amount: Double = BigDecimal(price.toDouble / 100).setScale(2, BigDecimal.RoundingMode.UP).toDouble 
+    f"£$amount"
   }
   
   def discount: Int = {
