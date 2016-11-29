@@ -3,7 +3,7 @@
 import scala.collection.mutable._
 
 class Checkout extends ProduceOffers {
-  // holds price of items
+  // holds price of items, in a production app, this would not be here.
   private val priceList = Map("Apple" -> 60, "Orange" -> 25)
   // the shopping cart container
   private val basket: ListBuffer[String] = ListBuffer()
